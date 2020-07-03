@@ -1,0 +1,28 @@
+<p>listado works!</p>
+
+<button (click)="crear()" class="btn btn-outline-primary mr-1" tabindex="-1" role="button" aria-disabled="true"> <i class="fa fa-plus" aria-hidden="true"></i> Crear Libro</button>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col" style="width: 300px;">Acciones</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Isbn</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor= "let item of Libros ;let indice=index" >
+      <th scope="row">{{indice}}</th>
+      <td>
+        <button type="button" class="btn btn-outline-primary mr-1" (click)="Editar(item.id)"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button>
+        <button type="button" class="btn btn-outline-danger" (click)="eliminar(item.id)"> <i class="fa fa-trash" aria-hidden="true"></i> Eliminar</button>
+      </td>
+      <td>{{item.nombre}}</td>
+      <td>{{item.isbn}}</td>
+
+    </tr>
+
+  </tbody>
+</table>
+

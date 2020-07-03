@@ -1,0 +1,33 @@
+
+
+<h2>editar categoria</h2>
+<form [formGroup]="frmEditarCategoria" (ngSubmit)="EditarCategoria()">
+
+
+
+
+  <div class="form-group">
+    <label for="formGroupNombre">Nombre</label>
+    <input type="text" class="form-control" name ="Nombre"
+    formControlName="Nombre"  id="Nombre"
+    id="formGroupNombre" placeholder="Nombre categoria" [(ngModel)]="this.categoria.nombre">
+
+    <div *ngIf="frmEditarCategoria.get('Nombre').errors?.required" class="text-danger" >
+      Este campo es obligatorio
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="formGroupDescripcion">Descripcion</label>
+    <input type="text" name ="Descripcion" formControlName="Descripcion"
+     class="form-control" id="formGroupDescripcion" placeholder="Descripcion categoria" [(ngModel)]="this.categoria.descripcion" required >
+
+     <div *ngIf="frmEditarCategoria.get('Descripcion').errors?.required" class="text-danger" >
+  Este campo es obligatorio
+    </div>
+
+
+    </div>
+
+
+  <button type="submit" class="btn btn-primary"  [disabled]="!frmEditarCategoria.valid" >Editar</button>
+</form>

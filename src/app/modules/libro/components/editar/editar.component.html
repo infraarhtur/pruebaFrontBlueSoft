@@ -1,0 +1,60 @@
+<h2>Editar Libro</h2>
+<form [formGroup]="frmEditarLibro" (ngSubmit)="EditarLibro()">
+
+
+
+
+  <div class="form-group">
+    <label for="formGroupNombre">Nombre</label>
+    <input type="text" class="form-control" name ="Nombre"
+    formControlName="Nombre"  id="Nombre"
+    id="formGroupNombre" placeholder="Nombre Libro" [(ngModel)]="this.Libro.nombre">
+
+    <div *ngIf="frmEditarLibro.get('Nombre').errors?.required" class="text-danger" >
+      Este campo es obligatorio
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="formGroupIsbn">Isbn</label>
+    <input type="text" name ="Isbn" formControlName="Isbn" [(ngModel)]="this.Libro.isbn"
+     class="form-control" id="formGroupIsbn" placeholder="Isbn Libro" required >
+
+     <div *ngIf="frmEditarLibro.get('Isbn').errors?.required" class="text-danger" >
+  Este campo es obligatorio
+    </div>
+    </div>
+
+
+    <div class="form-group">
+      <label for="formGroupAutorId">AutorId</label>
+      <!-- <input type="text" name ="AutorId" formControlName="AutorId"  [(ngModel)]="this.Libro.autorId"
+       class="form-control" id="formGroupAutorId" placeholder="AutorId Libro" required > -->
+
+       <select  class="form-control" name="AutorId" formControlName="AutorId"  [(ngModel)]="this.Libro.autorId">
+
+        <option [value]="item.id" *ngFor="let item of autores">{{item.nombre +' '+item.apellido}}</option>
+        </select>
+
+
+       <div *ngIf="frmEditarLibro.get('AutorId').errors?.required" class="text-danger" >
+    Este campo es obligatorio
+      </div>
+      </div>
+
+      <div class="form-group">
+        <label for="formGroupCategoriaId"></label>
+        <!-- <input type="text" name ="CategoriaId" formControlName="CategoriaId" [(ngModel)]="this.Libro.categoriaId"
+         class="form-control" id="formGroupCategoriaId" placeholder="CategoriaId Libro" required > -->
+
+         <select  class="form-control" name="CategoriaId" formControlName="CategoriaId" placeholder="CategoriaId Libro" [(ngModel)]="this.Libro.categoriaId" >
+          <option [value]="item.id" *ngFor="let item of Categorias">{{item.nombre }}</option>
+          </select>
+
+
+         <div *ngIf="frmEditarLibro.get('CategoriaId').errors?.required" class="text-danger" >
+      Este campo es obligatorio
+        </div>
+        </div>
+
+  <button type="submit" class="btn btn-primary"  [disabled]="!frmEditarLibro.valid" >Editar</button>
+</form>

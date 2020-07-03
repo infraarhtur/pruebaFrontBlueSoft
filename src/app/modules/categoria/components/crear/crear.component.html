@@ -1,0 +1,33 @@
+<h2>crear Categoria</h2>
+<form [formGroup]="frmCrearCategoria" (ngSubmit)="CrearCategoria()">
+
+
+
+
+  <div class="form-group">
+    <label for="formGroupNombre">Nombre</label>
+    <input type="text" class="form-control" name ="Nombre"
+    formControlName="Nombre"  id="Nombre"
+    id="formGroupNombre" placeholder="Nombre Categoria">
+
+    <div *ngIf="frmCrearCategoria.get('Nombre').errors?.required" class="text-danger" >
+      Este campo es obligatorio
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="formGroupDescripcion">Descripcion</label>
+    <input type="text" name ="Descripcion" formControlName="Descripcion"
+     class="form-control" id="formGroupDescripcion" placeholder="Descripcion Categoria" required >
+
+     <div *ngIf="frmCrearCategoria.get('Descripcion').errors?.required" class="text-danger" >
+  Este campo es obligatorio
+    </div>
+
+
+    </div>
+
+
+
+
+  <button type="submit" class="btn btn-primary"  [disabled]="!frmCrearCategoria.valid" >crear</button>
+</form>

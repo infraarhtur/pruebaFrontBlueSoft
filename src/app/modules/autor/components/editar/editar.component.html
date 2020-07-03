@@ -1,0 +1,43 @@
+
+
+<h2>editar Autor</h2>
+<form [formGroup]="frmEditarAutor" (ngSubmit)="EditarAutor()">
+
+
+
+
+  <div class="form-group">
+    <label for="formGroupNombre">Nombre</label>
+    <input type="text" class="form-control" name ="Nombre"
+    formControlName="Nombre"  id="Nombre"
+    id="formGroupNombre" placeholder="Nombre Autor" [(ngModel)]="this.autor.nombre">
+
+    <div *ngIf="frmEditarAutor.get('Nombre').errors?.required" class="text-danger" >
+      Este campo es obligatorio
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="formGroupApellido">Apellido</label>
+    <input type="text" name ="Apellido" formControlName="Apellido"
+     class="form-control" id="formGroupApellido" placeholder="Apellido Autor" [(ngModel)]="this.autor.apellido" required >
+
+     <div *ngIf="frmEditarAutor.get('Apellido').errors?.required" class="text-danger" >
+  Este campo es obligatorio
+    </div>
+
+
+    </div>
+
+  <div class="form-group">
+    <label for="formGroupFecha">Fecha</label>
+    <input type="date" data-date-format="YYYY  MMMM DD" class="form-control" name ="Fecha"
+    formControlName="Fecha"
+    id="formGroupFecha" placeholder="fecha Autor" [(ngModel)]="this.autor.fechaNacimiento" >
+
+    <div *ngIf="frmEditarAutor.get('Fecha').errors?.required" class="text-danger" >
+      Este campo es obligatorio
+    </div>
+
+  </div>
+  <button type="submit" class="btn btn-primary"  [disabled]="!frmEditarAutor.valid" >Editar</button>
+</form>

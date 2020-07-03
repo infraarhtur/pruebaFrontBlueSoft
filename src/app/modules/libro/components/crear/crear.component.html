@@ -1,0 +1,58 @@
+<h2>crear Libro</h2>
+<form [formGroup]="frmCrearLibro" (ngSubmit)="CrearLibro()">
+
+
+
+
+  <div class="form-group">
+    <label for="formGroupNombre">Nombre</label>
+    <input type="text" class="form-control" name ="Nombre"
+    formControlName="Nombre"  id="Nombre"
+    id="formGroupNombre" placeholder="Nombre Libro">
+
+    <div *ngIf="frmCrearLibro.get('Nombre').errors?.required" class="text-danger" >
+      Este campo es obligatorio
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="formGroupIsbn">Isbn</label>
+    <input type="text" name ="Isbn" formControlName="Isbn"
+     class="form-control" id="formGroupIsbn" placeholder="Isbn Libro" required >
+
+     <div *ngIf="frmCrearLibro.get('Isbn').errors?.required" class="text-danger" >
+  Este campo es obligatorio
+    </div>
+    </div>
+
+
+    <div class="form-group">
+      <label for="formGroupAutorId">AutorId</label>
+      <!-- <input type="text" name ="AutorId" formControlName="AutorId"
+       class="form-control" id="formGroupAutorId" placeholder="AutorId Libro" required > -->
+<!-- {{ autores | json}} -->
+       <select  class="form-control" name="AutorId" formControlName="AutorId">
+
+        <option [value]="item.id" *ngFor="let item of autores">{{item.nombre +' '+item.apellido}}</option>
+        </select>
+
+       <div *ngIf="frmCrearLibro.get('AutorId').errors?.required" class="text-danger" >
+    Este campo es obligatorio
+      </div>
+      </div>
+
+      <div class="form-group">
+        <label for="formGroupCategoriaId"></label>
+        <!-- <input type="text" name ="CategoriaId" formControlName="CategoriaId"
+         class="form-control" id="formGroupCategoriaId" placeholder="CategoriaId Libro" required > -->
+
+         <select  class="form-control" name="CategoriaId" formControlName="CategoriaId" placeholder="CategoriaId Libro" required >
+          <option [value]="item.id" *ngFor="let item of Categorias">{{item.nombre }}</option>
+          </select>
+
+         <div *ngIf="frmCrearLibro.get('CategoriaId').errors?.required" class="text-danger" >
+      Este campo es obligatorio
+        </div>
+        </div>
+
+  <button type="submit" class="btn btn-primary"  [disabled]="!frmCrearLibro.valid" >crear</button>
+</form>
